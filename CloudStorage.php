@@ -1,30 +1,20 @@
 <?php
-include_once('upyun.class.php');
+Yii::import('ext.Upyun.UpYun',true);
 
 class CloudStorage
 {
     public $images;
     public $sounds;
-    public $avatars;
-    public $favoriteImages;
-    public $system;
     public $logs;
     function init(){}
 
     function getConfig($type, $source='')
     {
-        if ($type === Files::TYPE_IMAGE && $source === Files::SOURCE_AVATAR)
-        {
-            $conf = $this->avatars;
-        } elseif ($type === Files::TYPE_IMAGE && $source === Files::SOURCE_FEEDS) {
+        if ($type === Files::TYPE_IMAGE) {
             $conf = $this->images;
-        } elseif ($type === Files::TYPE_SOUND && $source === Files::SOURCE_FEEDS) {
+        } elseif ($type === Files::TYPE_SOUND) {
             $conf = $this->sounds;
-        } elseif ($type === Files::TYPE_IMAGE && $source === Files::SOURCE_FAVORITES) {
-            $conf = $this->favoriteImages;
-        } elseif ($type === Files::TYPE_IMAGE && $source === Files::SOURCE_SYSTEM) {
-            $conf = $this->system;
-        } elseif ($type === Files::TYPE_LOG && $source === Files::SOURCE_LOGS) {
+        }elseif ($type === Files::TYPE_LOG && $source === Files::SOURCE_LOGS) {
             $conf = $this->logs;
         } else {
         	$conf = array();
